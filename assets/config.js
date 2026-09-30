@@ -18,8 +18,9 @@ window.APP_CONFIG = {
     nome: "Tay Palombo Fotografia",
     responsavel: "Tay",
     whatsapp: "11976729907",
-    logoUrl: "",         // ex. do formato: "assets/logo.png"
-    nomeNaLogo: false,   // true = a logo já tem o nome escrito
+    logoUrl: "assets/logo.png",
+    logoAltura: 70,      // altura da logo em px
+    nomeNaLogo: true,    // a logo já tem o nome escrito
     monograma: false,    // sem logo: mostra só o nome, sem o círculo com as iniciais
     descricao: ""        // uma frase curta que aparece na página inicial
   },
