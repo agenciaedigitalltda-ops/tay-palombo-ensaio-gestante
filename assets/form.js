@@ -32,7 +32,8 @@
   }
 
   /* ---------- estado (sobrevive a um recarregar da página) ---------- */
-  var KEY = 'lp_form_' + formId;
+  // chave inclui o caminho do site: várias clientes no mesmo domínio não misturam o progresso
+  var KEY = 'lp_form_' + location.pathname.split('/')[1] + '_' + formId;
   var state = LP.storage(function (s) { return JSON.parse(s.getItem(KEY) || 'null'); });
   if (!state || state.status === 'Completo') {
     state = { leadId: newId(), answers: {}, index: 0, status: '' };

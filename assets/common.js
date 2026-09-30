@@ -194,17 +194,18 @@ window.LP = (function () {
   }
 
   /* ---------- Origem do visitante (UTMs) ---------- */
+  var ORIGEM_KEY = 'lp_origem_' + location.pathname.split('/')[1];
   var ORIGEM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'origem'];
 
   function storage(fn) { try { return fn(window.sessionStorage); } catch (e) { return null; } }
 
   function captureOrigin() {
     var params = new URLSearchParams(location.search);
-    var o = storage(function (s) { return JSON.parse(s.getItem('lp_origem') || '{}'); }) || {};
+    var o = storage(function (s) { return JSON.parse(s.getItem(ORIGEM_KEY) || '{}'); }) || {};
     ORIGEM_KEYS.forEach(function (k) { var v = params.get(k); if (v) o[k] = v.slice(0, 300); });
     if (!o.referrer && document.referrer && document.referrer.indexOf(location.origin) !== 0) o.referrer = document.referrer.slice(0, 300);
     if (!o.entrada) o.entrada = location.pathname.split('/').pop() || 'index.html';
-    storage(function (s) { s.setItem('lp_origem', JSON.stringify(o)); });
+    storage(function (s) { s.setItem(ORIGEM_KEY, JSON.stringify(o)); });
     return o;
   }
 
