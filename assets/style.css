@@ -330,6 +330,24 @@ textarea.field { resize: none; line-height: 1.4; min-height: 96px; font-size: 19
 .car-dots button.on { width: 22px; background: var(--accent); }
 .step-galeria .actions { justify-content: center; margin-top: 22px; }
 
+/* ---------- modo vitrine: só carrossel + botão do WhatsApp fixo embaixo ---------- */
+.step-so-vitrine { padding-top: 28px; padding-bottom: 110px; justify-content: flex-start; }
+.step-so-vitrine .brand { margin: 0 auto 18px; }
+.step-so-vitrine .actions {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; margin: 0; justify-content: center;
+  padding: 18px 20px calc(18px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg-1) 62%, transparent);
+}
+.step-so-vitrine .actions .btn { width: 100%; max-width: 520px; justify-content: center; }
+.step-so-vitrine .btn-pulso { animation: pulso 1.8s ease-in-out infinite; }
+.step-so-vitrine .btn-pulso:hover, .step-so-vitrine .btn-pulso:active { animation-play-state: paused; }
+@keyframes pulso {
+  0%   { transform: scale(1);    box-shadow: 0 10px 28px -14px rgba(60, 45, 35, .55), 0 0 0 0 color-mix(in srgb, var(--btn-1) 55%, transparent); }
+  60%  { transform: scale(1.04); box-shadow: 0 10px 28px -14px rgba(60, 45, 35, .55), 0 0 0 16px color-mix(in srgb, var(--btn-1) 0%, transparent); }
+  100% { transform: scale(1);    box-shadow: 0 10px 28px -14px rgba(60, 45, 35, .55), 0 0 0 0 color-mix(in srgb, var(--btn-1) 0%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) { .step-so-vitrine .btn-pulso { animation: none; } }
+
 /* ---------- abertura do formulário com fotos nas laterais (capa) ---------- */
 .step.welcome-cover { max-width: none; padding: 0; position: relative; overflow: hidden; justify-content: flex-end; }
 .wc-photo { position: absolute; top: 0; z-index: 0; object-fit: cover; object-position: center top; pointer-events: none; }

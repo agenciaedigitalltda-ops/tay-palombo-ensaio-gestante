@@ -146,6 +146,15 @@ window.APP_CONFIG = {
         fotosLaterais: [],   // 2 fotos na vertical, uma de cada lado (1 foto = repete espelhada)   // 2 fotos na vertical, uma de cada lado (vazio = usa home.fotosHero)
         tempo: "Responda em 1 minuto e receba valores e datas no seu WhatsApp"
       },
+      /* Modo vitrine: sem perguntas, só o carrossel e o botão do WhatsApp fixo embaixo.
+         Para voltar ao formulário de 4 perguntas, apague este bloco (ou comente). */
+      soVitrine: {
+        titulo: "A arte da fotografia encontrando a elegância da sua história",
+        texto: "Fotografia gestacional de alta estética para mulheres que valorizam sua própria história.",
+        botao: "Quero saber valores e datas",
+        mensagemWhatsapp: "Oi, Tay! Vim pelo anúncio e queria saber valores e datas do ensaio gestante.",
+        segundos: 2, formato: "2/3", tamanho: 0.7, fotos: []
+      },
       perguntaNome: "Antes de tudo, como você se chama?",
       perguntaWhatsapp: "Que bom te ver por aqui, {nome}! Qual o seu WhatsApp?",
       ajudaWhatsapp: "É por lá que você vai receber os valores e as datas.",

@@ -449,6 +449,28 @@
     if (cur && cur._keys && !e.metaKey && !e.ctrlKey && !e.altKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') cur._keys(e);
   });
 
+  // Modo vitrine: sem perguntas, só o carrossel e o botão do WhatsApp fixo embaixo (F.soVitrine)
+  function montarSoVitrine() {
+    var V = F.soVitrine;
+    document.title = V.titulo + (C.negocio.nome ? ' · ' + C.negocio.nome : '');
+    var link = LP.waLink(C.negocio.whatsapp, V.mensagemWhatsapp);
+    var node = renderGaleria({ titulo: V.titulo, ajuda: V.texto, segundos: V.segundos, formato: V.formato, tamanho: V.tamanho, fotos: V.fotos || [] });
+    node.classList.add('step-so-vitrine');
+    node.insertBefore(el('div', { class: 'brand', 'data-brand': true }), node.firstChild);
+    var acoes = node.querySelector('.actions');
+    acoes.textContent = '';
+    if (link) {
+      acoes.appendChild(el('a', {
+        class: 'btn btn-primary btn-lg btn-pulso', href: link, target: '_blank', rel: 'noopener', 'data-wa': 'vitrine-' + formId,
+        onclick: function () { LP.track('Lead', { content_name: F.nome }, state.leadId); }
+      }, [V.botao || 'Falar no WhatsApp']));
+    }
+    stage.appendChild(node);
+    LP.renderBrand(node);
+    LP.track('ViewContent', { content_name: F.nome });
+  }
+  if (F.soVitrine) { montarSoVitrine(); return; }
+
   // Retoma de onde parou (sem pular a tela final)
   var start = steps[state.index] && steps[state.index].tipo !== 'final' ? state.index : 0;
   if (start > 2 && !state.answers.whatsapp) start = 0;
